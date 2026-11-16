@@ -1,0 +1,91 @@
+
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+    int real, imag;
+
+public:
+    void getData()
+    {
+        cout << "Enter real and imaginary parts: ";
+        cin >> real >> imag;
+    }
+
+    void display()
+    {
+        cout << real << " + " << imag << "i" << endl;
+    }
+
+    // Unary increment operator
+    void operator++()
+    {
+        ++real;
+        ++imag;
+    }
+
+    // Unary decrement operator
+    void operator--()
+    {
+        --real;
+        --imag;
+    }
+
+    // Binary addition operator
+    Complex operator+(Complex c)
+    {
+        Complex temp;
+        temp.real = real + c.real;
+        temp.imag = imag + c.imag;
+        return temp;
+    }
+
+    // Binary subtraction operator
+    Complex operator-(Complex c)
+    {
+        Complex temp;
+        temp.real = real - c.real;
+        temp.imag = imag - c.imag;
+        return temp;
+    }
+};
+
+int main()
+{
+    Complex c1, c2, c3;
+
+    cout << "Enter first complex number:\n";
+    c1.getData();
+
+    cout << "Enter second complex number:\n";
+    c2.getData();
+
+    cout << "\nFirst Complex Number: ";
+    c1.display();
+
+    cout << "Second Complex Number: ";
+    c2.display();
+
+    // Increment
+    ++c1;
+    cout << "\nAfter Increment: ";
+    c1.display();
+
+    // Decrement
+    --c1;
+    cout << "After Decrement: ";
+    c1.display();
+
+    // Addition
+    c3 = c1 + c2;
+    cout << "\nAddition: ";
+    c3.display();
+
+    // Subtraction
+    c3 = c1 - c2;
+    cout << "Subtraction: ";
+    c3.display();
+
+    return 0;
+}
