@@ -1,0 +1,62 @@
+
+#include <iostream>
+using namespace std;
+
+class Shape
+{
+    float radius, length, width;
+
+public:
+    // Constructor for rectangle
+    Shape(float l, float w)
+    {
+        length = l;
+        width = w;
+        radius = 0;
+    }
+
+    // Constructor for circle
+    Shape(float r)
+    {
+        radius = r;
+        length = 0;
+        width = 0;
+    }
+
+    void rectangle()
+    {
+        cout << "Perimeter of Rectangle = "
+             << 2 * (length + width) << endl;
+    }
+
+    void circle()
+    {
+        cout << "Perimeter of Circle = "
+             << 2 * 3.14 * radius << endl;
+    }
+
+    // Destructor
+    ~Shape()
+    {
+        cout << "Destructor called." << endl;
+    }
+};
+
+int main()
+{
+    float l, w, r;
+
+    cout << "Enter length and width of rectangle: ";
+    cin >> l >> w;
+
+    Shape s1(l, w);
+    s1.rectangle();
+
+    cout << "Enter radius of circle: ";
+    cin >> r;
+
+    Shape s2(r);
+    s2.circle();
+
+    return 0;
+}
