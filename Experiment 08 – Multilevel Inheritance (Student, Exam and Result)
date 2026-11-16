@@ -1,0 +1,89 @@
+
+#include <iostream>
+using namespace std;
+
+class Student
+{
+protected:
+    int roll;
+    char name[50];
+
+public:
+    void getStudent()
+    {
+        cout << "Enter Roll Number: ";
+        cin >> roll;
+
+        cout << "Enter Name: ";
+        cin >> name;
+    }
+
+    void displayStudent()
+    {
+        cout << "\nRoll Number: " << roll;
+        cout << "\nName: " << name << endl;
+    }
+};
+
+class Exam : public Student
+{
+protected:
+    int marks[6];
+
+public:
+    void getMarks()
+    {
+        cout << "Enter marks of 6 subjects:\n";
+
+        for (int i = 0; i < 6; i++)
+        {
+            cout << "Subject " << i + 1 << ": ";
+            cin >> marks[i];
+        }
+    }
+};
+
+class Result : public Exam
+{
+    int total;
+    float percentage;
+
+public:
+    void calculate()
+    {
+        total = 0;
+
+        for (int i = 0; i < 6; i++)
+            total += marks[i];
+
+        percentage = total / 6.0;
+    }
+
+    void displayResult()
+    {
+        displayStudent();
+
+        cout << "Marks:\n";
+
+        for (int i = 0; i < 6; i++)
+            cout << "Subject " << i + 1
+                 << ": " << marks[i] << endl;
+
+        cout << "Total Marks: " << total << "/600";
+        cout << "\nPercentage: " << percentage << "%";
+    }
+};
+
+int main()
+{
+    Result r;
+
+    r.getStudent();
+    r.getMarks();
+    r.calculate();
+
+    cout << "\n----- STUDENT RESULT -----\n";
+    r.displayResult();
+
+    return 0;
+}
