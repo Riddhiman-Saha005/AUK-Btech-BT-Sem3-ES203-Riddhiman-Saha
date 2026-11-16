@@ -1,0 +1,78 @@
+
+#include <iostream>
+using namespace std;
+
+class B;
+
+class A
+{
+    int x;
+
+public:
+    void getData()
+    {
+        cout << "Enter first number: ";
+        cin >> x;
+    }
+
+    void display()
+    {
+        cout << x;
+    }
+
+    friend void swapValues(A &, B &);
+};
+
+class B
+{
+    int y;
+
+public:
+    void getData()
+    {
+        cout << "Enter second number: ";
+        cin >> y;
+    }
+
+    void display()
+    {
+        cout << y;
+    }
+
+    friend void swapValues(A &, B &);
+};
+
+// Friend function
+void swapValues(A &a, B &b)
+{
+    int temp = a.x;
+    a.x = b.y;
+    b.y = temp;
+}
+
+int main()
+{
+    A obj1;
+    B obj2;
+
+    obj1.getData();
+    obj2.getData();
+
+    cout << "\nBefore Swapping:\n";
+    cout << "First number: ";
+    obj1.display();
+
+    cout << "\nSecond number: ";
+    obj2.display();
+
+    swapValues(obj1, obj2);
+
+    cout << "\n\nAfter Swapping:\n";
+    cout << "First number: ";
+    obj1.display();
+
+    cout << "\nSecond number: ";
+    obj2.display();
+
+    return 0;
+}
