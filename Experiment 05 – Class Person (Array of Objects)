@@ -1,0 +1,139 @@
+
+#include <iostream>
+#include <cstring>
+#include <iomanip>
+using namespace std;
+
+class Person
+{
+    char name[64];
+    int age;
+    char address[64];
+    float salary;
+
+public:
+    // Default constructor
+    Person()
+    {
+        strcpy(name, "");
+        age = 0;
+        strcpy(address, "");
+        salary = 0;
+    }
+
+    // Parameterized constructor
+    Person(char n[], int a, char ad[], float s)
+    {
+        strcpy(name, n);
+        age = a;
+        strcpy(address, ad);
+        salary = s;
+    }
+
+    int getAge()
+    {
+        return age;
+    }
+
+    char* getName()
+    {
+        return name;
+    }
+
+    // Inline function to find youngest and oldest
+    inline void displayAge()
+    {
+        cout << "Name: " << name
+             << " Age: " << age << endl;
+    }
+
+    // Salary slip
+    void salarySlip()
+    {
+        float basic = salary * 0.50;
+        float hra = salary * 0.20;
+        float da = salary * 0.10;
+        float other = salary * 0.20;
+
+        cout << "\n------ SALARY SLIP ------\n";
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Address: " << address << endl;
+
+        cout << fixed << setprecision(2);
+        cout << "Basic Salary: " << basic << endl;
+        cout << "HRA: " << hra << endl;
+        cout << "DA: " << da << endl;
+        cout << "Other Allowances: " << other << endl;
+        cout << "-------------------------\n";
+        cout << "Total Salary: " << salary << endl;
+    }
+};
+
+// Inline function to find youngest and oldest
+inline void findAge(Person p[], int n)
+{
+    int youngest = 0, oldest = 0;
+
+    for (int i = 1; i < n; i++)
+    {
+        if (p[i].getAge() < p[youngest].getAge())
+            youngest = i;
+
+        if (p[i].getAge() > p[oldest].getAge())
+            oldest = i;
+    }
+
+    cout << "\nYoungest Person: ";
+    p[youngest].displayAge();
+
+    cout << "Oldest Person: ";
+    p[oldest].displayAge();
+}
+
+int main()
+{
+    Person p[10];
+    char name[64], address[64];
+    int age, n;
+    float salary;
+
+    cout << "Enter number of persons (max 10): ";
+    cin >> n;
+
+    if (n < 1 || n > 10)
+    {
+        cout << "Invalid number of persons!";
+        return 0;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "\nEnter details of Person " << i + 1 << endl;
+
+        cin.ignore();
+        cout << "Name: ";
+        cin.getline(name, 64);
+
+        cout << "Age: ";
+        cin >> age;
+
+        cin.ignore();
+        cout << "Address: ";
+        cin.getline(address, 64);
+
+        cout << "Total Salary: ";
+        cin >> salary;
+
+        p[i] = Person(name, age, address, salary);
+    }
+
+    // Find youngest and oldest
+    findAge(p, n);
+
+    // Display salary slip
+    cout << "\nSalary Slip of Person 1:";
+    p[0].salarySlip();
+
+    return 0;
+}
