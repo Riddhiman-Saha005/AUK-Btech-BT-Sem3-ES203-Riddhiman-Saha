@@ -1,0 +1,46 @@
+
+#include <iostream>
+using namespace std;
+
+class Area
+{
+public:
+
+    // Area of circle
+    float AREA(float r)
+    {
+        return 3.14 * r * r;
+    }
+
+    // Area of rectangle
+    float AREA(float l, float b)
+    {
+        return l * b;
+    }
+
+    // Area of triangle
+    float AREA(float a, float b, int)
+    {
+        return 0.5 * a * b;
+    }
+};
+
+int main()
+{
+    Area obj;
+    float r, l, b, a;
+
+    cout << "Enter radius of circle: ";
+    cin >> r;
+    cout << "Area of Circle = " << obj.AREA(r) << endl;
+
+    cout << "\nEnter length and breadth of rectangle: ";
+    cin >> l >> b;
+    cout << "Area of Rectangle = " << obj.AREA(l, b) << endl;
+
+    cout << "\nEnter base and height of triangle: ";
+    cin >> a >> b;
+    cout << "Area of Triangle = " << obj.AREA(a, b, 0) << endl;
+
+    return 0;
+}
